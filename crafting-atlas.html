@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crafting-Atlas – Ragnarok Online</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef1f8;--s1:#fff;--s2:#e6eaf4;--ln:#d3d9e8;--tx:#17203a;--mut:#5d6786;--ac:#b8780a;--ac2:#0f8f86;--acbg:#f6e6c4;--ok:#127a4c;--bad:#c0392b;--tl:34%;--sh:0 8px 28px rgba(30,40,80,.12);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--s1:#161d30;--s2:#1f2840;--ln:#2b3652;--tx:#e6ecfb;--mut:#93a0c4;--ac:#f2b84b;--ac2:#5fd0c4;--acbg:#3a2d12;--ok:#5fd6a0;--bad:#ff8a7a;--tl:72%;--sh:0 10px 34px rgba(0,0,0,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1320;--s1:#161d30;--s2:#1f2840;--ln:#2b3652;--tx:#e6ecfb;--mut:#93a0c4;--ac:#f2b84b;--ac2:#5fd0c4;--acbg:#3a2d12;--ok:#5fd6a0;--bad:#ff8a7a;--tl:72%;--sh:0 10px 34px rgba(0,0,0,.45);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body.lock{overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+.hd{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.logo{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--ac),#e5622e);display:grid;place-items:center;font-size:24px;flex:none}
+h1{font:700 26px/1.1 Sora,system-ui,sans-serif;margin:0;letter-spacing:-.02em}
+.hd p{margin:2px 0 0;color:var(--mut);font-size:14px}
+.sp{flex:1}
+.ib{background:var(--s1);border:1px solid var(--ln);border-radius:10px;width:40px;height:40px}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px}
+.k{background:var(--s1);border:1px solid var(--ln);border-radius:14px;padding:14px 16px}
+.k b{display:block;font:700 28px/1.1 Sora,system-ui,sans-serif;color:var(--ac)}
+.k span{color:var(--mut);font-size:13px}
+.sb{position:relative;margin-bottom:14px}
+.sb input{width:100%;height:56px;border-radius:16px;border:1.5px solid var(--ln);background:var(--s1);color:var(--tx);font:inherit;font-size:17px;padding:0 90px 0 52px;box-shadow:var(--sh)}
+.sb input:focus{outline:none;border-color:var(--ac2)}
+.sb .ic{position:absolute;left:18px;top:15px;font-size:20px;opacity:.7}
+.sb kbd{position:absolute;right:16px;top:16px;border:1px solid var(--ln);border-radius:6px;padding:0 8px;color:var(--mut);font-size:13px;line-height:22px}
+.sb .x{position:absolute;right:10px;top:10px;border:0;background:var(--s2);border-radius:8px;width:36px;height:36px;display:none}
+.sb.has kbd{display:none}.sb.has .x{display:block}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.ch{border:1px solid var(--ln);background:var(--s1);border-radius:999px;padding:6px 14px;font-size:14px}
+.ch i{font-style:normal;color:var(--mut);margin-left:6px;font-size:12px}
+.ch[aria-pressed=true]{background:var(--acbg);border-color:var(--ac);color:var(--ac)}
+.ch[aria-pressed=true] i{color:inherit}
+.cnt{color:var(--mut);font-size:13px;margin:14px 2px 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{text-align:left;background:var(--s1);border:1px solid var(--ln);border-radius:14px;padding:14px;min-height:112px;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:var(--ac2)}
+.card.on{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.card h3{margin:10px 0 4px;font:600 16px/1.25 Sora,system-ui,sans-serif}
+.card p{margin:0;color:var(--mut);font-size:13px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.tag{font-size:12px;border-radius:7px;padding:2px 8px;background:hsl(var(--h) 60% 50%/.16);color:hsl(var(--h) 70% var(--tl))}
+.lv{font-size:12px;color:var(--mut)}
+mark{background:var(--acbg);color:var(--ac);border-radius:3px;padding:0 1px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:50px 10px;border:1px dashed var(--ln);border-radius:14px}
+.scr{position:fixed;inset:0;background:rgba(5,8,18,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
+.scr.open{opacity:1;pointer-events:auto}
+.pn{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);border-left:1px solid var(--ln);z-index:30;transform:translateX(100%);transition:transform .22s;overflow-y:auto;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(30px + env(safe-area-inset-bottom,0px));box-shadow:var(--sh)}
+.pn.open{transform:none}
+.pn h2{font:700 24px/1.2 Sora,system-ui,sans-serif;margin:10px 0 4px;letter-spacing:-.01em}
+.pn h4{margin:22px 0 8px;font:600 15px Sora,system-ui,sans-serif}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.step{display:inline-flex;align-items:center;border:1px solid var(--ln);border-radius:10px;background:var(--s1);overflow:hidden}
+.step button{border:0;background:none;width:38px;height:38px;font-size:18px}
+.step input{width:70px;height:38px;border:0;border-inline:1px solid var(--ln);background:none;color:var(--tx);text-align:center;font:inherit}
+.q{border:1px solid var(--ln);background:var(--s1);border-radius:8px;padding:5px 10px;font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--s1);border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+th{font-weight:500;color:var(--mut);font-size:12px;text-align:left;padding:8px 12px;background:var(--s2)}
+td{padding:9px 12px;border-top:1px solid var(--ln)}
+.num{text-align:right;font-variant-numeric:tabular-nums}th.num{text-align:right}
+.lnk{border:0;background:none;color:var(--ac2);padding:0;text-decoration:underline;text-underline-offset:3px}
+.box{background:var(--s1);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:14px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.pri{background:linear-gradient(135deg,var(--ac),#e5622e);color:#1b1305;border:0;border-radius:10px;padding:9px 16px;font-weight:600;margin-top:14px}
+.cl{float:right}
+.tst{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:10px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none}
+.tst.on{opacity:1}
+.ft{margin-top:36px;color:var(--mut);font-size:13px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hd">
+    <div class="logo">⚒️</div>
+    <div><h1>Crafting-Atlas</h1><p>Rezepte, Materialien und Schmiede-Planer für Ragnarok Online</p></div>
+    <div class="sp"></div>
+    <button class="ib" data-act="theme" aria-label="Hell oder dunkel umschalten">◐</button>
+  </header>
+  <section class="kp" id="kp"></section>
+  <div class="sb" id="sb">
+    <span class="ic">🔎</span>
+    <input id="q" type="search" autocomplete="off" placeholder="Rezept oder Material suchen, z. B. Claymore, Iron, Red Potion" aria-label="Suche">
+    <kbd>/</kbd><button class="x" data-act="clr" aria-label="Suche leeren">✕</button>
+  </div>
+  <div class="fl" id="cats"></div>
+  <div class="fl" id="lvls"></div>
+  <div class="cnt" id="cnt"></div>
+  <main class="grid" id="grid"></main>
+  <p class="ft">Daten aus deiner Excel-Datei. Das Schmieden folgt dem klassischen Forging; auf einzelnen Servern, auch RO Zero, können Raten und Rezepte abweichen.</p>
+</div>
+<div class="scr" id="scr" data-act="close"></div>
+<aside class="pn" id="pn" aria-label="Rezeptdetails"></aside>
+<div class="tst" id="tst"></div>
+<script>
+const D={"r":{"Axe":[0,1,[["Iron",10]]],"Battle Axe":[0,1,[["Iron",110]]],"Blade":[0,1,[["Iron",45],["Tooth of Bat",25]]],"Club":[0,1,[["Iron",3]]],"Cutter":[0,1,[["Iron",25]]],"Falchion":[0,1,[["Iron",30]]],"Javelin":[0,1,[["Iron",3]]],"Katana":[0,1,[["Horrendous Mouth",15],["Iron",35]]],"Knife":[0,1,[["Iron",1],["Jellopy",10]]],"Mace":[0,1,[["Iron",30]]],"Main Gauche":[0,1,[["Iron",50]]],"Pike":[0,1,[["Iron",70]]],"Spear":[0,1,[["Iron",35]]],"Sword":[0,1,[["Iron",2]]],"Waghnak":[0,1,[["Iron",160],["Pearl",1]]],"Bastard Sword":[0,2,[["Steel",45]]],"Chain":[0,2,[["Steel",45]]],"Dagger":[0,2,[["Steel",30]]],"Dirk":[0,2,[["Steel",17]]],"Flail":[0,2,[["Steel",33]]],"Glaive":[0,2,[["Steel",40]]],"Guisarme":[0,2,[["Steel",25]]],"Hammer":[0,2,[["Steel",30]]],"Knuckle Dusters":[0,2,[["Steel",50]]],"Partizan":[0,2,[["Steel",55]]],"Rapier":[0,2,[["Steel",20]]],"Ring Pommel Saber":[0,2,[["Steel",40],["Wolf Claw",50]]],"Scimitar":[0,2,[["Steel",35]]],"Slayer":[0,2,[["Decayed Nail",20],["Steel",25]]],"Smasher":[0,2,[["Steel",20]]],"Stiletto":[0,2,[["Steel",40]]],"Studded Knuckles":[0,2,[["Steel",65]]],"Broad Sword":[0,3,[["Oridecon",12],["Steel",20]]],"Buster":[0,3,[["Orc´s Fang",30],["Oridecon",4],["Steel",20]]],"Claw":[0,3,[["Oridecon",8],["Topaz",10]]],"Claymore":[0,3,[["Cracked Diamond",1],["Oridecon",16],["Steel",20]]],"Damascus":[0,3,[["Oridecon",4],["Steel",60],["Zircon",1]]],"Finger":[0,3,[["Opal",10],["Oridecon",4]]],"Fist":[0,3,[["Oridecon",4],["Ruby",10]]],"Flamberge":[0,3,[["Cursed Ruby",1],["Oridecon",16]]],"Gladius":[0,3,[["Oridecon",4],["Sapphire",1],["Steel",40]]],"Haedonggum":[0,3,[["Oridecon",8],["Steel",10],["Topaz",1]]],"Halberd":[0,3,[["Oridecon",12],["Steel",10]]],"Lance":[0,3,[["Evil Horn",2],["Oridecon",12],["Ruby",3]]],"Morning Star":[0,3,[["1 carat Diamond",1],["Steel",85]]],"Saber":[0,3,[["Opal",1],["Oridecon",8],["Steel",5]]],"Stunner":[0,3,[["Heroic Emblem",1],["Steel",120]]],"Sword Mace":[0,3,[["Sharp Scale",20],["Steel",100]]],"Trident":[0,3,[["Aquamarine",5],["Oridecon",8],["Steel",10]]],"Tsurugi":[0,3,[["Garnet",1],["Oridecon",8],["Steel",15]]],"Two-Handed Axe":[0,3,[["Amethyst",1],["Oridecon",8],["Steel",10]]],"Two-Handed Sword":[0,3,[["Oridecon",12],["Steel",10]]],"Flame Heart":[0,0,[["Red Blood",10]]],"Great Nature":[0,0,[["Green Live",10]]],"Iron":[0,0,[["Iron Ore",1]]],"Mystic Frozen":[0,0,[["Crystal Blue",10]]],"Oridecon":[0,0,[["Rough Oridecon",5]]],"Refining Armor":[0,0,[["Elunium",1]]],"Refining Armor +11 (oder höher)":[0,0,[["Carnium",1]]],"Refining Weapon +11 (oder höher)":[0,0,[["Bradium",1]]],"Refining Weapon Lv 1":[0,0,[["Phracon",1]]],"Refining Weapon Lv 2":[0,0,[["Emveretarcon",1]]],"Refining Weapon Lv 3":[0,0,[["Oridecon",1]]],"Refining Weapon Lv 4":[0,0,[["Oridecon",1]]],"Rough Wind":[0,0,[["Wind of Verdure",10]]],"Star Crumb":[0,0,[["Star Dust",10]]],"Steel":[0,0,[["Coal",1],["Iron",5]]],"Acid Bottle":[1,0,[["Empty Bottle",1],["Immortal Heart",1]]],"Alcohol":[1,0,[["Empty Bottle",1],["Empty Test Tube",1],["Poisen Spore",5],["Stem",5]]],"Aloevera":[1,0,[["Aloe",1],["Empty Bottle",1],["Honey",1]]],"Anodyne":[1,0,[["Alcohol",1],["Empty Bottle",1],["Mint",1]]],"Blue Potion":[1,0,[["Blue Herb",1],["Empty Potion Bottle",1],["Scell",1]]],"Coating Potion":[1,0,[["Alcohol",1],["Empty Bottle",1],["Heart of Mermaid",1],["Zenorc´s Fang",1]]],"Coldproof Potion":[1,0,[["Blue Gemstone",1],["Empty Potion Bottle",1],["Heart of Mermaid",3]]],"Condensed Red Potion":[1,0,[["Cactus Needle",1],["Empty Test Tube",1],["Red Potion",1]]],"Condensed White Potion":[1,0,[["Empty Test Tube",1],["White Potion",1],["Witched Starsand",1]]],"Condensed Yellow Potion":[1,0,[["Empty Test Tube",1],["Mole Whiskers",1],["Yellow Potion",1]]],"Earthproof Potion":[1,0,[["Empty Potion Bottle",1],["Large Jellopy",2],["Yellow Gemstone",1]]],"Embryo":[1,0,[["Glass Tube",1],["Seed of Life",1],["Yggdrasil Dew",1]]],"Fire Bottle":[1,0,[["Alcohol",1],["Empty Bottle",1],["Fabric",1]]],"Fireproof Potion":[1,0,[["Empty Potion Bottle",1],["Lizard Scruff",2],["Red Gemstone",1]]],"Mine Bottle":[1,0,[["Detonator",1],["Empty Bottle",1],["Tendon",1]]],"Plant Bottle":[1,0,[["Empty Bottle",1],["Maneater Blossom",2]]],"Red Potion":[1,0,[["Empty Potion Bottle",1],["Red Herb",1]]],"Thunderproof Potion":[1,0,[["Blue Gemstone",1],["Empty Potion Bottle",1],["Moth Wing Powder",3]]],"White Potion":[1,0,[["Empty Potion Bottle",1],["White Herb",1]]],"Yellow Potion":[1,0,[["Empty Potion Bottle",1],["Yellow Herb",1]]],"Cursed Arrow":[2,0,[["Amulet",40],["Bloody Edge",200],["Broken Farming Utensil",20],["Clattering Skull",50],["Cursed Ruby",50],["Cursed Seal",50],["Dark Crystal Fragment",30],["Dragon Skin",50],["Little Evil Horn",2],["Mother´s Whispers",1000],["Red Gemstone",1],["Will of Red Darkness",200],["Will of the Darkness",30]]],"Crystal Arrow":[2,0,[["Ancient Tooth",300],["Blue Bijou",50],["Blue Gemstone",30],["Crystal Blue",600],["Fang of Hatii",300],["Fin Helm",600],["Gill",150],["Glacial Heart",50],["Ice Cubic",100],["Ice Scale",150],["Mystic Frozen",450]]],"Steel Arrow":[2,0,[["Ancient Tooth",20],["Battered Kettle",50],["Burning Horseshoe",100],["Destroyed Armor",150],["Dragon Skin",10],["Elunium",1000],["Fin Helm",200],["Manacles",50],["Matysr`s Leash",100],["Mr. Scream",300],["Ogre Tooth",30],["Old Pick",50],["Opera Masque",200],["Orc Claw",10],["Orc´s Fang",5],["Piece of Shield",100],["Reins",50],["Rough Elunium",200],["Scell",8],["Shackles",50],["Steel",100],["Tail of Steel Scorpion",250],["Tangled Chains",50],["Used Iron Plate",100],["Welding Mask",200]]],"Arrow of Shadow":[2,0,[["Armor Piece of Dullahan",150],["Blade Lost in Darkness",200],["Clattering Skull",50],["Coal",8],["Dark Crystal Fragment",50],["Decayed Nail",1],["Dokebi Horn",2],["Evil Horn",20],["Horrendous Mouth",5],["Key of Underground",100],["Loki´s Whispers",1000],["Rune of Darkness",300],["Skeletal Armor Piece",200],["Tangled Chains",50],["Tooth of Bat",1],["Will of Red Darkness",100],["Will of the Darkness",50]]],"Arrow":[2,0,[["Barren Trunk",20],["Cactus Needle",50],["Fine-grained Trunk",20],["Jellopy",4],["Needle of Alarm",100],["Piece of Bamboo",100],["Solid Trunk",20],["Tree Root",7],["Trunk",40],["Wooden Mail [0]",700],["Wooden Mail [1]",1000]]],"Rusty Arrow":[2,0,[["Bee Sting",1],["Broken Farming Utensil",50],["Decayed Nail",1],["Ogre Tooth",5],["Old Pick",100],["Red Gemstone",10],["Scorpion Tail",3],["Used Iron Plate",100],["Zenorc´s Fang",5]]],"Sharp Arrow":[2,0,[["Blade Lost in Darkness",6000],["Bloody Edge",600],["Cracked Diamond",50],["Fang",2],["Hard Feeler",20],["Insect Leg",10],["Leopard Claw",10],["Mantis Scythe",1],["Matysr`s Leash",10],["Mr. Scream",200],["Old Blue Box",50],["Sharp Leaf",30],["Valhalla´s Flower",600]]],"Arrow of Wind":[2,0,[["Blue Bijou",50],["Car´s Eye",200],["Matysr`s Leash",150],["Rough Wind",450],["Wind of Verdure",150]]],"Frozen Arrow":[2,0,[["Blue Bijou",80],["Blue Gemstone",1],["Glacial Heart",50],["Ice Scale",400],["Mystic Frozen",5]]],"Iron Arrow":[2,0,[["Broken Farming Utensil",10],["Dokebi Horn",40],["Dragon Canine",50],["Empty Bottle",2],["Emveretarcon",200],["Garlet",12],["Gill",80],["Horn",50],["Iron",100],["Iron Ore",50],["Lantern",80],["Little Evil Horn",50],["Mole Claw",50],["Orc´s Fang",30],["Phracon",50],["Reins",100],["Shackles",700],["Wolf Claw",15],["Wooden Mail [0]",500],["Wooden Mail [1]",700]]],"Fire Arrow":[2,0,[["Burning Heart",150],["Burnt Tree",250],["Fire Dragon Scale",300],["Flame Heart",1800],["Live Coal",100],["Matchstick",3000],["Red Bijou",100],["Red Blood",600]]],"Flash Arrow":[2,0,[["Crystal Fragment",10],["Evil Horn",10],["Foolischness of the Blind",200],["Glittering Jacket",1000],["Gold",50],["Great Nature",5],["Red Bijou",80],["Rune of Darkness",150],["Star Crumb",30],["Star Dust",10]]],"Sleep Arrow":[2,0,[["Crystal Fragment",30],["Cursed Ruby",10],["Lucifer´s Lament",800],["Needle of Alarm",5],["Old Blue Box",50],["Rough Wind",5],["Yellow Bijou",80],["Yellow Gemstone",1]]],"Mute Arrow":[2,0,[["Cursed Seal",50],["Dead Branch",40],["Dragon Skin",50],["Emperium",600],["Flame Heart",5],["Ice Scale",200],["Lucifer´s Lament",400],["Opera Masque",40],["Young Twig",1000]]],"Oridecon Arrow":[2,0,[["Dragon Canine",1],["Emperium",600],["Gold",50],["Heroic Emblem",1],["Key of Clock Tower",50],["Old Hilt",1000],["Oridecon",250],["Piece of Shield",100],["Rough Oridecon",50],["Shining Spear Blade",100],["Skeletal Armor Piece",100]]],"Stun Arrow":[2,0,[["Elunium",50],["Evil Horn",5],["Fire Dragon Scale",300],["Heroic Emblem",5],["Lucifer´s Lament",800],["Rough Elunium",5],["Solid Peach",30],["Stiff Horn",2],["Stone Fragment",30],["Welding Mask",40]]],"Immaterial Arrow":[2,0,[["Emperium",600],["Piece of Shield",300],["Silver Robe [1]",10],["Skeletal Armor Piece",500],["Valhalla´s Flower",600],["Yellow Bijou",50]]],"Silver Arrow":[2,0,[["Emveretarcon",40],["Fang",40],["Golden Ornament",200],["Silver Robe [0]",700],["Silver Robe [1]",1000],["Unicorn Horn",1000],["Yellow Bijou",50],["Zargon",50]]],"Holy Arrow":[2,0,[["Golden Ornament",300],["Valhalla´s Flower",600]]],"Stone Arrow":[2,0,[["Great Nature",450],["Green Bijou",100],["Green Live",150],["Mole Claw",60],["Orc´s Fang",10],["Porcupine Quill",30],["Stone Fragment",50],["Yellow Gemstone",30]]],"Poison Arrow":[2,0,[["Green Bijou",80],["Insect Leg",50],["Poisonous Toad Skin",20],["Red Gemstone",1],["Stinky Scale",1],["Tail of Steel Scorpion",1],["Venom Canine",1],["Will of Red Darkness",200],["Will of the Darkness",30]]],"Assorted Seafood":[3,0,[["Clam Flesh",10],["Gill",5],["Fin",5],["Fresh Fish",1]]],"Autumn Red Tea":[3,0,[["Blue Herb",5],["Red Herb",10],["Yellow Herb",10]]],"Bomber Steak":[3,0,[["Meat",4],["Old Frying Pan",1],["Green Herb",10],["Red Chill",5],["Spicy Sauce",1]]],"Chocolate Mousse Cake":[3,0,[["Cacao",10],["Piece of Cake",1],["Milk",1],["China",1]]],"Clam Soup":[3,0,[["Clam Flesh",20],["Conch",10],["Honey",1],["Sweet Sauce",1]]],"Cream Sandwich":[3,0,[["Bread",5],["Milk",15],["Cheese",10],["Yellow Herb",10],["Meat",1],["Sweet Sauce",1]]],"Fried Grasshoper Legs":[3,0,[["Grasshoper´s Leg",5],["Old Frying Pan",1],["Cooking Oil",1]]],"Fried Monkey Tails":[3,0,[["Yoyo Tail",5],["Old Frying Pan",1],["Cooking Oil",1]]],"Fried Scorpion Tails":[3,0,[["Scorpion Tail",20],["Bug Leg",10],["Huge Leaf",10],["Old Frying Pan",2],["Cooking Oil",1]]],"Fried Sweet Potato":[3,0,[["Potato",10],["Yam",10],["Sweet Potato",1],["Sweet Sauce",1]]],"Frog Egg Squid Ink Soup":[3,0,[["Bag of Grain",1],["Spawn",10],["Squid Ink",1]]],"Fruit Mix":[3,0,[["Apple",5],["Banana",5],["Orange",5],["Strawberry",5],["Yellow Spice",1]]],"Grape Juice Herbal Tea":[3,0,[["Grape",3],["Red Potion",2]]],"Green Salad":[3,0,[["Hinalle Leaflet",2],["Aloe Leaflet",3],["Sharp Leaf",10],["Huge Leaf",6],["Sweet Sauce",1],["Yellow Spice",1]]],"Herb Marinade Beef":[3,0,[["Meat",5],["Red Herb",3],["Yellow Herb",2],["Green Herb",3],["Sweet Sauce",1],["Lemon",1]]],"Honey Grape Juice":[3,0,[["Honey",1],["Grape",2],["Red Potion",1]]],"Honey Herbal Tea":[3,0,[["Honey",10],["White Herb",10],["Yellow Spice",1]]],"Lutie Cold Noodle":[3,0,[["Bag of Grain",3],["Spicy Sauce",1],["Ice Cubic",10],["Carrot",10],["Jack o' Pumpkin",10]]],"Lutie Lady's Pancake":[3,0,[["Potato",10],["Honey",2],["Cooking Oil",1],["Carrot",3],["Bag of Grain",1]]],"Mastela Fruit Wine":[3,0,[["Mastela Fruit",4],["Blue Potion",1],["Alcohol",2],["Lemon",2],["Yellow Spice",1]]],"Mixed Juice":[3,0,[["Apple Juice",3],["Carrot Juice",2],["Grape Juice",1],["Orange Juice",2]]],"Morroc Fruit Wine":[3,0,[["Strawberry",10],["Lemon",4],["Orange",10],["Alcohol",2],["Grape",5]]],"Seasoned Jellyfish":[3,0,[["Tentacle",30],["White Herb",10],["Soft Blade of Grass",10],["Old Frying Pan",1],["Squid Ink",20]]],"Seasoned Sticky Webfoot":[3,0,[["Sticky Webfoot",20],["Green Herb",10],["Yellow Herb",10],["Savory Sauce",1]]],"Smooth Noodle":[3,0,[["Bag of Grain",1],["Savory Sauce",1],["Jack o' Pumpkin",5],["Carrot",3]]],"Spicy Fried Bao":[3,0,[["Bao",20],["Yellow Herb",10],["Spicy Sauce",1],["Red Spice",1],["Green Herb",20]]],"Steamed Ancient Lips":[3,0,[["Ancient Lip",10],["Raccoon Leaf",10],["White Herb",10],["Fresh Fish",5],["Sweet Sauce",2]]],"Steamed Bat Wing in Pumpkin":[3,0,[["Wing of Red Bat",20],["Jack o' Pumpkin",20],["Pot",1],["Hinalle Leaflet",10],["Red Herb",10]]],"Steamed Crab Nippers":[3,0,[["Nipper",10],["Green Herb",10],["Yellow Potion",1]]],"Tentacle Cheese Gratin":[3,0,[["Tentacle",10],["Cheese",10],["Yam",5],["Sweet Sauce",1]]],"Poison Bottle":[4,0,[["Berserk Potion",1],["Empty Bottle",1],["Venom Canine",1],["Bee Sting",1],["Cactus Needle",1],["Karvodailnirol",1],["Poisen Spore",1]]],"Holy Water":[4,0,[["Empty Bottle",1]]],"Elemental Converter (Wind)":[4,0,[["Wind of Verdure",1],["Blank Scroll",1]]],"Elemental Converter (Water)":[4,0,[["Crystal Blue",1],["Blank Scroll",1]]],"Elemental Converter (Fire)":[4,0,[["Red Blood",1],["Blank Scroll",1]]],"Elemental Converter (Earth)":[4,0,[["Green Live",1],["Blank Scroll",1]]],"Ancilla":[4,0,[["Blue Gemstone",1]]]}};
+const CATS=[
+ {s:"Blacksmith",i:"⚒️",h:32},{s:"Alchemist",i:"⚗️",h:280},{s:"Pfeile",i:"🏹",h:150},{s:"Kochen",i:"🍳",h:12},{s:"Sonstiges",i:"✨",h:200}];
+const R=D.r,ARROW=2;
+const ELS=[["kein Element","",""],["Feuer","Flame Heart","Fire"],["Wasser","Mystic Frozen","Water"],["Wind","Rough Wind","Wind"],["Erde","Great Nature","Earth"]];
+const REF=["Keine","Very Strong","Very Very Strong","Very Very Very Strong"],BON=["–","+5","+10","+40"];
+const HAM=["","Iron Hammer","Golden Hammer","Oridecon Hammer"];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const f=n=>n.toLocaleString("de-DE");
+const names=Object.keys(R).sort((a,b)=>a.localeCompare(b));
+const U={};for(const n of names)for(const[m,q]of R[n][2])(U[m]=U[m]||[]).push([n,q]);
+const S={q:"",cat:-1,lvl:0,sel:null,n:1,ref:0,el:0};
+const hl=t=>{const q=S.q.trim(),i=q?t.toLowerCase().indexOf(q.toLowerCase()):-1;return i<0?esc(t):esc(t.slice(0,i))+"<mark>"+esc(t.slice(i,i+q.length))+"</mark>"+esc(t.slice(i+q.length))};
+function match(n){const r=R[n],q=S.q.trim().toLowerCase();
+ if(S.cat>=0&&r[0]!==S.cat)return null;if(S.lvl&&r[1]!==S.lvl)return null;
+ if(!q)return{s:3};const l=n.toLowerCase();
+ if(l.startsWith(q))return{s:0};if(l.includes(q))return{s:1};
+ const m=r[2].find(x=>x[0].toLowerCase().includes(q));return m?{s:2,via:m[0]}:null}
+function kpis(){const mats=Object.keys(U),top=mats.sort((a,b)=>U[b].length-U[a].length)[0];
+ const k=[[names.length,"Rezepte"],[mats.length,"verschiedene Materialien"],[mats.filter(m=>R[m]).length,"Materialien, die du selbst herstellst"],[top,"meistgenutztes Material ("+U[top].length+" Rezepte)"]];
+ $("#kp").innerHTML=k.map(([a,b])=>`<div class="k"><b>${esc(a)}</b><span>${b}</span></div>`).join("")}
+function chips(){
+ const c=[-1,0,1,2,3,4].map(i=>{const n=i<0?names.length:names.filter(x=>R[x][0]===i).length;
+  return`<button class="ch" aria-pressed="${S.cat===i}" data-cat="${i}">${i<0?"Alle":CATS[i].i+" "+CATS[i].s}<i>${n}</i></button>`}).join("");
+ $("#cats").innerHTML=c;
+ $("#lvls").innerHTML=S.cat===0?`<span class="lv">Waffenlevel</span>`+[0,1,2,3].map(l=>`<button class="ch" aria-pressed="${S.lvl===l}" data-lvl="${l}">${l?"Level "+l:"Alle"}</button>`).join(""):""}
+const card=(n,m)=>{const r=R[n],c=CATS[r[0]];
+ return`<button class="card${S.sel===n?" on":""}" data-n="${esc(n)}"><div class="top"><span class="tag" style="--h:${c.h}">${c.i} ${c.s}</span>${r[1]?`<span class="lv">Level ${r[1]}</span>`:""}</div><h3>${hl(n)}</h3><p>${m.via?`enthält <b>${hl(m.via)}</b>`:r[2].slice(0,3).map(x=>esc(x[0])).join(", ")+(r[2].length>3?" …":"")}</p></button>`};
+function list(){
+ const res=names.map(n=>[n,match(n)]).filter(x=>x[1]).sort((a,b)=>a[1].s-b[1].s||a[0].localeCompare(b[0]));
+ $("#cnt").textContent=res.length+" von "+names.length+" Rezepten";
+ $("#grid").innerHTML=res.length?res.map(x=>card(x[0],x[1])).join(""):`<div class="empty">Kein Treffer für „${esc(S.q)}“. Prüfe die Schreibweise oder suche nach einem Material.</div>`;
+ $("#sb").classList.toggle("has",!!S.q)}
+function detail(){
+ const p=$("#pn"),n=S.sel;
+ document.body.classList.toggle("lock",!!n);p.classList.toggle("open",!!n);$("#scr").classList.toggle("open",!!n);
+ if(!n)return;
+ const r=R[n],c=CATS[r[0]],ar=r[0]===ARROW,bs=r[1]>0,N=S.n,L=[];
+ const rows=r[2].map(([m,q])=>{const t=ar?Math.ceil(N/q):q*N;L.push(m+": "+t);
+  return`<tr><td>${R[m]?`<button class="lnk" data-n="${esc(m)}" data-t="${t}">${esc(m)}</button>`:esc(m)}</td><td class="num">${f(q)}</td><td class="num"><b>${f(t)}</b></td></tr>`}).join("");
+ let ex="",info="";
+ if(bs){const e=ELS[S.el],sc=S.ref,sl=sc+(S.el?1:0),bad=sc===3&&S.el;
+  const xr=[];if(sc)xr.push(["Star Crumb",sc]);if(S.el)xr.push([e[1],1]);xr.push([HAM[r[1]],1]);
+  ex=xr.map(([m,q])=>{L.push(m+": "+q*N);return`<tr><td>${esc(m)}</td><td class="num">${q}</td><td class="num"><b>${f(q*N)}</b></td></tr>`}).join("")+`<tr><td>Anvil (wird nicht verbraucht)</td><td class="num">1</td><td class="num">1</td></tr>`;
+  const nm=(sc?"Very ".repeat(sc)+"Strong ":"")+"[Charname]’s "+(S.el?e[2]+" ":"")+n;
+  info=`<h4>Veredelung und Element</h4>
+  <div class="row">${REF.map((x,i)=>`<button class="ch" aria-pressed="${S.ref===i}" data-act="ref" data-v="${i}">${i?x.replace(/Very /g,"V").replace("Strong","S")+" ("+i+")":x}</button>`).join("")}</div>
+  <div class="row" style="margin-top:8px">${ELS.map((x,i)=>`<button class="ch" aria-pressed="${S.el===i}" data-act="el" data-v="${i}">${x[0]}</button>`).join("")}</div>
+  <div class="box"><div>Ergebnis: <b>${esc(nm)}</b></div><div>Bonus: ${BON[sc]} Mastery-ATK</div>
+  <div class="${bad?"bad":"ok"}">${bad?"3 Star Crumbs plus Elementstein ergeben 4 Slots. Das geht nicht.":sl+" von 3 Slots belegt"}</div>
+  <div>Ranking-Punkte beim Schmieden: <b>${r[1]===3&&sl===3&&!bad?10*N:0}</b>${r[1]===3?"":" (nur Level-3-Waffen mit 3 belegten Slots zählen)"}</div></div>`}
+ const used=(U[n]||[]).map(([x])=>`<button class="ch" data-n="${esc(x)}">${esc(x)}</button>`).join("");
+ const qk=(ar?[100,500,1000,5000]:[1,5,10,50,100]).map(v=>`<button class="q" data-act="qn" data-v="${v}">${f(v)}</button>`).join("");
+ $("#pn").innerHTML=`<button class="ib cl" data-act="close" aria-label="Schließen">✕</button>
+ <span class="tag" style="--h:${c.h}">${c.i} ${c.s}</span>${bs?` <span class="lv">Waffenlevel ${r[1]}, ${HAM[r[1]]}</span>`:""}
+ <h2>${esc(n)}</h2>
+ <div class="row"><span class="lv">${ar?"Gewünschte Pfeile":"Anzahl Crafts"}</span>
+  <span class="step"><button data-act="dec" aria-label="weniger">−</button><input id="nn" type="number" min="1" value="${N}" aria-label="Menge"><button data-act="inc" aria-label="mehr">+</button></span>${qk}</div>
+ ${info}
+ <h4>${ar?"Material (eine Sorte genügt)":"Benötigte Materialien"}</h4>
+ <table><thead><tr><th>Material</th><th class="num">${ar?"Pfeile je Stück":"je Craft"}</th><th class="num">Gesamt</th></tr></thead><tbody>${rows}${ex}</tbody></table>
+ <button class="pri" data-act="copy" data-l="${esc(L.join("\n"))}">Einkaufsliste kopieren</button>
+ ${used?`<h4>Wird benötigt für</h4><div class="row">${used}</div>`:""}`;
+ p.scrollTop=0}
+function toast(t){const e=$("#tst");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
+function open(n,t){S.sel=n;S.n=t||(R[n][0]===ARROW?100:1);S.ref=0;S.el=0;list();detail()}
+function keepScroll(){const p=$("#pn"),y=p.scrollTop;detail();p.scrollTop=y}
+document.addEventListener("click",e=>{
+ const t=e.target.closest("[data-n],[data-act],[data-cat],[data-lvl]");if(!t)return;const d=t.dataset;
+ if(d.n!==undefined){open(d.n,d.t?+d.t:0);return}
+ if(d.cat!==undefined){S.cat=+d.cat;S.lvl=0;chips();list();return}
+ if(d.lvl!==undefined){S.lvl=+d.lvl;chips();list();return}
+ const a=d.act;
+ if(a==="close"){S.sel=null;list();detail()}
+ else if(a==="clr"){S.q="";$("#q").value="";list();$("#q").focus()}
+ else if(a==="inc"){S.n++;keepScroll()}
+ else if(a==="dec"){S.n=Math.max(1,S.n-1);keepScroll()}
+ else if(a==="qn"){S.n=+d.v;keepScroll()}
+ else if(a==="ref"){S.ref=+d.v;keepScroll()}
+ else if(a==="el"){S.el=+d.v;keepScroll()}
+ else if(a==="copy"){const x=d.l;(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>toast("Einkaufsliste kopiert"),()=>toast("Kopieren nicht möglich"))}
+ else if(a==="theme"){const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"}
+});
+document.addEventListener("change",e=>{if(e.target.id==="nn"){S.n=Math.max(1,parseInt(e.target.value)||1);keepScroll()}});
+$("#q").addEventListener("input",e=>{S.q=e.target.value;list()});
+document.addEventListener("keydown",e=>{
+ if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();$("#q").focus()}
+ else if(e.key==="Escape"){if(S.sel){S.sel=null;list();detail()}else if(S.q){S.q="";$("#q").value="";list()}}});
+kpis();chips();list();
+</script>
+</body>
+</html>
